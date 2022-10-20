@@ -1,0 +1,52 @@
+plugins {
+    // Apply the application plugin to add support for building a CLI application in Java.
+    id 'application'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'notonthehighstreet.NotOnTheHighStreetMarketPlace'
+        )
+    }
+}
+
+repositories {
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
+}
+
+dependencies {
+    // Use JUnit Jupiter API for testing.
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.1'
+
+    // Use JUnit Jupiter Engine for testing.
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+
+    // This dependency is used by the application.
+    implementation 'com.google.guava:guava:30.0-jre'
+
+    // Lombok Project dependencies
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    testCompileOnly 'org.projectlombok:lombok:1.18.20'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+    // OpenCSV Project dependencies
+    implementation group: 'com.opencsv', name: 'opencsv', version: '5.2'
+
+    // Hamcrest core dependencies
+    testImplementation group: 'org.hamcrest', name: 'hamcrest-core', version: '2.2'
+
+
+}
+
+application {
+    // Define the main class for the application.
+    mainClass = 'notonthehighstreet.NotOnTheHighStreetMarketPlace'
+}
+
+tasks.named('test') {
+    // Use junit platform for unit tests.
+    useJUnitPlatform()
+}
